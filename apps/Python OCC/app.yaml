@@ -1,0 +1,10 @@
+name: Python OCC
+python: ../../.venv
+icon: view/config/content/1_Overview/images/ic_geometry.svg
+
+inputs:
+  parameters: 1
+
+linux:
+  environ:
+    LD_LIBRARY_PATH: $LD_LIBRARY_PATH:../../.venv/lib

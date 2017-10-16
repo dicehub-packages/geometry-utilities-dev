@@ -1,0 +1,15 @@
+name: STL Import
+
+icon: view/config/content/1_Overview/images/ic_geometry.svg
+inputs:
+  stl_files: 0
+  obj_files: 0
+
+outputs:
+  - stl_files
+  - obj_files
+
+linux:
+  environ:
+    LD_LIBRARY_PATH: $LD_LIBRARY_PATH:../../.venv/lib
+  

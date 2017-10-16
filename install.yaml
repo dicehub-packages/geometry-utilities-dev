@@ -1,0 +1,41 @@
+# stages:
+# ======
+# pre_build:      Execute before build of the package.
+# pre_install:    Before install of the package.
+# post_install:   After install of the package.
+# pre_uninstall:  Before uninstall of the package,
+#                 before files are deleted.
+
+
+# Files or directories to be deployed
+# as a package
+targets:
+  - apps/
+
+# Ignore patterns
+ignore:
+  - '*/__pycache__'
+
+# Extra files or directories to be added to the package
+extras:
+  - install/dist
+  - install/requirements.txt
+
+# Section only for Windows
+win:
+  extras:
+    - install/install.bat
+  pre_build:
+    - install\\build.bat {python}
+  post_install:
+    - install\\install.bat {python} {dest}
+
+# Section only for linux
+linux:
+  extras:
+    - install/install.sh
+  pre_build:
+    - install/build.sh {python}
+  post_install:
+    - chmod +x install/install.sh
+    - install/install.sh {python} {dest}

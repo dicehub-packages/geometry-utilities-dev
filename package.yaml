@@ -1,0 +1,22 @@
+version: '1'
+
+name: 'Geometry Utilities'
+description: |
+  'Utilities for geometry files'
+release: '17.10.0'
+
+python: '{package_dir}/.venv'
+
+linux:
+  environ:
+    LD_LIBRARY_PATH: '$LD_LIBRARY_PATH:{package_dir}/.venv/lib'
+    PYTHONPATH: '$PYTHONPATH:{package_dir}/shared'
+win:
+  environ:
+    PYTHONPATH: '$PYTHONPATH;{package_dir}\\shared'
+
+apps:
+  STL (STereoLithography):
+    - 'apps/STL Import'
+  Utilities:
+    - 'apps/Python OCC'
