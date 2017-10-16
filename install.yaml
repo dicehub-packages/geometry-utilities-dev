@@ -6,6 +6,7 @@
 # pre_uninstall:  Before uninstall of the package,
 #                 before files are deleted.
 
+version: "1"
 
 # Files or directories to be deployed
 # as a package
