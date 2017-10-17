@@ -617,6 +617,6 @@ class GeometryImport(
     ==================================
     '''
 
-    def run(self, *args):
-        self.set_progress(-1)
+    @diceTask('run')
+    def dummy_run(self):
         return True
