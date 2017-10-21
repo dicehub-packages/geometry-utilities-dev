@@ -15,5 +15,13 @@ ToolBarMenu {
                 id: massPropertiesDrawer
             }
         }
+        SmallToolBarButton {
+            iconSource: "images/split.svg"
+            text: "Split stl file into seperate files"
+            enabled: app.stl_model.selection.hasSelection > 0
+            onClicked: {
+                app.splitSelected()
+            }
+        }
     }
 }

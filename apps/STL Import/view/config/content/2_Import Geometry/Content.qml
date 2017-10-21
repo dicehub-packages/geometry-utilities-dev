@@ -1,9 +1,8 @@
 import QtQuick 2.5 as QQ
-import QtQuick.Controls 1.4 as QQC
-//import QtQml.Models 2.2
 import QtQuick.Layouts 1.3 as QQL
 
 import DICE.App 1.0
+
 
 AppLayoutCard {
     id: root
@@ -32,7 +31,6 @@ AppLayoutCard {
                                  "OBJ File (*.obj)"], true)
             }
         }
-
         Button {
             text: "Delete selected"
             color: colors.theme['background_color_warning']
@@ -42,16 +40,5 @@ AppLayoutCard {
                 app.deleteSelected()
             }
         }
-
-        // FlatButton {
-        //     text: "Split selected"
-        //     color: colors.theme['background_color_warning']
-        //     textColor: "#fff"
-        //     width: (parent.width - parent.spacing)/2
-        //     onClicked: {
-        //         app.splitSelected()
-        //     }
-        // }
-
     }
 }
