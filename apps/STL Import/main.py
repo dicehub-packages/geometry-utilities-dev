@@ -112,7 +112,7 @@ class GeometryImport(
             file.loading = False
         return self.config
 
-    def on_input(self, input_data):
+    def input_changed(self, input_data):
         self.__input_data = input_data
         stl_input = self.__input_data.get('stl_files', {})
         for v in list(self.__stl_model.elements_of(StlFile)):
@@ -227,7 +227,7 @@ class GeometryImport(
                 params = dict(file = v.name))
             self.__apply_action(action, False)
 
-        self.on_input(self.__input_data)
+        self.input_changed(self.__input_data)
         self.__history_pos = start
         for i in range(start, len(self.__history_model.root_elements)):
             self.__apply_action(self.__history_model.root_elements[i], False)
