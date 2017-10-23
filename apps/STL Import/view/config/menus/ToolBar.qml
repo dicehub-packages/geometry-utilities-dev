@@ -1,6 +1,8 @@
 import DICE.App 1.0
 
 ToolBarMenu {
+    showAppControls: false
+
     ToolBarGroup {
         title: "Tools"
         SmallToolBarButton {

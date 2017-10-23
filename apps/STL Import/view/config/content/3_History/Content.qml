@@ -1,5 +1,5 @@
 import QtQuick 2.4
-import QtQuick.Controls 1.4
+import QtQuick.Controls 2.1
 import QtQuick.Layouts 1.3
 
 import DICE.App 1.0
@@ -36,19 +36,19 @@ AppLayoutCard {
         height: 40
         width: parent.width
     }
-    FlatButton {
+    Button {
         text: qsTr("clear history")
         Layout.fillWidth: true
         onClicked: app.clearHistory()
     }
 
-    FlatButton {
+    Button {
         text: qsTr("Remove Last Action and Repeat All")
         Layout.fillWidth: true
         onClicked: app.removeLastActionAndReplay()
     }
 
-    FlatButton {
+    Button {
         text: qsTr("Replay History")
         Layout.fillWidth: true
         onClicked: {

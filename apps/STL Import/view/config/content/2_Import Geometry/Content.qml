@@ -1,5 +1,6 @@
 import QtQuick 2.5 as QQ
 import QtQuick.Layouts 1.3 as QQL
+import QtQuick.Controls 2.0 as QC2
 
 import DICE.App 1.0
 
@@ -21,7 +22,7 @@ AppLayoutCard {
         spacing: 10
         QQL.Layout.fillWidth: true
 
-        Button {
+        QC2.Button {
             text: "Import"
             width: (parent.width - parent.spacing)/2
             onClicked: {
@@ -31,10 +32,8 @@ AppLayoutCard {
                                  "OBJ File (*.obj)"], true)
             }
         }
-        Button {
+        QC2.Button {
             text: "Delete selected"
-            color: colors.theme['background_color_warning']
-            textColor: "#fff"
             width: (parent.width - parent.spacing)/2
             onClicked: {
                 app.deleteSelected()
