@@ -74,6 +74,14 @@ class GeometryImport(
         self.__intertia_matrix = None
         self.__volume = None
 
+
+    def connected(self):
+        super().connected()
+        if list(self.__stl_model.elements_of(StlFile)):
+            self.set_progress(-1)
+        else:
+            self.set_progress(0)
+
     def w_geometry_object_clicked(self, obj, *args, **kwargs):
         if obj == None:
             self.stl_model.current_item = None
@@ -294,6 +302,11 @@ class GeometryImport(
         self.config['stl'].append((file.name, file.source, file.modified, file.app))
         self.update_output()
         self.config.write()
+
+        if list(self.__stl_model.elements_of(StlFile)):
+            self.set_progress(-1)
+        else:
+            self.set_progress(0)
 
     def _action_delete_file(self, file):
         file = self.__find_file(file)

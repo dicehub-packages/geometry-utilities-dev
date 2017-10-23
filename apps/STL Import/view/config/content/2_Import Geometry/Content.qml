@@ -26,9 +26,7 @@ AppLayoutCard {
             width: (parent.width - parent.spacing)/2
             onClicked: {
                 fileDialog.open(app.addSTL, "Select Files for import",
-                                ["Object-Files (*.stl *.obj)",
-                                 "STL File (*.stl)",
-                                 "OBJ File (*.obj)"], true)
+                                [ "STL File (*.stl)"], true)
             }
         }
         Button {
