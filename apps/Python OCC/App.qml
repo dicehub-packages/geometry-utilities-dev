@@ -54,7 +54,7 @@ Item {
                 text: 'Output type:'
             }
 
-            InputField2 {
+            DiceInputField {
                 width: 300
                 target: app
                 property: 'outputType'
