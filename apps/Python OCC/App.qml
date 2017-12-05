@@ -1,5 +1,5 @@
 import QtQuick 2.4
-import QtWebEngine 1.3
+import QtWebEngine 1.5
 import QtQuick.Layouts 1.3
 import QtQuick.Controls 1.4 as QQC1
 import QtQuick.Controls 2.2
@@ -35,15 +35,15 @@ Item {
                 onError: {
                     errorText.text = error;
                     popup.open();
-                } 
-                    
+                }
+
             }
         }
 
         RowLayout {
             Layout.fillWidth: true
 
-            FlatButton {
+            DiceButton {
                 text: "Apply"
                 onClicked: {
                     app.saveRequest();
@@ -81,7 +81,7 @@ Item {
                         target: app
                         onSaveRequest: {
                             codeView.runJavaScript("editor.getValue()", function(result) { app.save(result); });
-                        } 
+                        }
                     }
 
                     Component.onCompleted: {
@@ -128,7 +128,7 @@ Item {
                             }
                             else {
                                 codeView.zoomFactor -= 0.1;
-                            }   
+                            }
                         } else {
                             wheel.accepted = false;
                         }
@@ -148,9 +148,6 @@ Item {
                 }
             }
         }
-
     }
-
-
 }
 

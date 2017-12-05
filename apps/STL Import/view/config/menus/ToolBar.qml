@@ -8,7 +8,7 @@ ToolBarMenu {
         SmallToolBarButton {
             iconName: "Check"
             text: "Show mass properties"
-            enabled: app.stl_model.selection.hasSelection > 0
+            enabled: app.hasMassProperties
             onClicked: {
                 massPropertiesDrawer.open()
                 app.getMassProperties()

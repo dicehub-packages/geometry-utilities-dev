@@ -74,7 +74,6 @@ class GeometryImport(
         self.__intertia_matrix = None
         self.__volume = None
 
-
     def connected(self):
         super().connected()
         if list(self.__stl_model.elements_of(StlFile)):
@@ -100,6 +99,9 @@ class GeometryImport(
                         m.vtk_obj.set_selected(True)
                 else:
                     v.vtk_obj.set_selected(True)
+            self.selection_changed()
+
+    selection_changed = diceSignal(name='selectionChanged')
 
     def __prepare_config(self):
         conf = self.config_path("config.json")
@@ -504,9 +506,7 @@ class GeometryImport(
         output = []
         for name in os.listdir(path):
             output.append(
-                os.path.join(
-                    self.run_path('files', relative=True), name))
-        print('stl_files ->>', output)
+                os.path.join(self.run_path('files', relative=True), name))
         self.set_output('stl_files', output)
 
     # items commands
@@ -599,6 +599,14 @@ class GeometryImport(
 
     # Mass properties
     # ===============
+    @diceProperty('QVariant', name='hasMassProperties', notify=selection_changed)
+    def has_mass_properties(self):
+        if self.stl_model is not None:
+            return len(self.stl_model.selection) == 1 \
+                    and self.stl_model.current_item.item_type == "mesh"
+        else:
+            return False
+
     @diceSlot(name="getMassProperties")
     def get_mass_properties(self):
         mass_properties = \
