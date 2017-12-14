@@ -34,37 +34,35 @@ Drawer {
                 }
             }
         }
-
         Subheader {
             text: "Volume"
         }
-        InputField {
+        DiceInputField {
             readOnly: true
-            label: ""
-            text: app.selectedGeometryVolume
+            value: app.selectedGeometryVolume
         }
         Subheader {
             text: "Center of gravity"
         }
-        VectorField {
+        DiceVectorField {
             targetValue: app.selectedGeometryCOG
         }
         Subheader {
             text: "Intertia matrix at the center of gravity"
         }
-        VectorField {
+        DiceVectorField {
             xLabel: "xx"
             yLabel: "xy"
             zLabel: "xz"
             targetValue: app.selectedGeometryIntertiaMatrix[0]
         }
-        VectorField {
+        DiceVectorField {
             xLabel: "yx"
             yLabel: "yy"
             zLabel: "yz"
             targetValue: app.selectedGeometryIntertiaMatrix[1]
         }
-        VectorField {
+        DiceVectorField {
             xLabel: "zx"
             yLabel: "zy"
             zLabel: "zz"

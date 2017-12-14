@@ -1,0 +1,13 @@
+__pycache__
+*.pyc
+*.pyo
+.directory
+*.qmlc
+*.jsc
+.venv
+.qmake.stash
+*.pro.user
+*.autosave
+*.idea
+install/dist
+*.zip

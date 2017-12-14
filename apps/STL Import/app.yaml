@@ -7,7 +7,6 @@ inputs:
 
 outputs:
   - stl_files
-  - obj_files
 
 linux:
   environ:

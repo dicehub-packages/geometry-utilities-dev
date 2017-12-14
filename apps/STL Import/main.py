@@ -74,6 +74,13 @@ class GeometryImport(
         self.__intertia_matrix = None
         self.__volume = None
 
+    def connected(self):
+        super().connected()
+        if list(self.__stl_model.elements_of(StlFile)):
+            self.set_progress(-1)
+        else:
+            self.set_progress(0)
+
     def w_geometry_object_clicked(self, obj, *args, **kwargs):
         if obj == None:
             self.stl_model.current_item = None
@@ -92,6 +99,9 @@ class GeometryImport(
                         m.vtk_obj.set_selected(True)
                 else:
                     v.vtk_obj.set_selected(True)
+            self.selection_changed()
+
+    selection_changed = diceSignal(name='selectionChanged')
 
     def __prepare_config(self):
         conf = self.config_path("config.json")
@@ -104,7 +114,7 @@ class GeometryImport(
             file.loading = False
         return self.config
 
-    def on_input(self, input_data):
+    def input_changed(self, input_data):
         self.__input_data = input_data
         stl_input = self.__input_data.get('stl_files', {})
         for v in list(self.__stl_model.elements_of(StlFile)):
@@ -219,7 +229,7 @@ class GeometryImport(
                 params = dict(file = v.name))
             self.__apply_action(action, False)
 
-        self.on_input(self.__input_data)
+        self.input_changed(self.__input_data)
         self.__history_pos = start
         for i in range(start, len(self.__history_model.root_elements)):
             self.__apply_action(self.__history_model.root_elements[i], False)
@@ -294,6 +304,11 @@ class GeometryImport(
         self.config['stl'].append((file.name, file.source, file.modified, file.app))
         self.update_output()
         self.config.write()
+
+        if list(self.__stl_model.elements_of(StlFile)):
+            self.set_progress(-1)
+        else:
+            self.set_progress(0)
 
     def _action_delete_file(self, file):
         file = self.__find_file(file)
@@ -491,9 +506,7 @@ class GeometryImport(
         output = []
         for name in os.listdir(path):
             output.append(
-                os.path.join(
-                    self.run_path('files', relative=True), name))
-        print('stl_files ->>', output)
+                os.path.join(self.run_path('files', relative=True), name))
         self.set_output('stl_files', output)
 
     # items commands
@@ -586,6 +599,14 @@ class GeometryImport(
 
     # Mass properties
     # ===============
+    @diceProperty('QVariant', name='hasMassProperties', notify=selection_changed)
+    def has_mass_properties(self):
+        if self.stl_model is not None:
+            return len(self.stl_model.selection) == 1 \
+                    and self.stl_model.current_item.item_type == "mesh"
+        else:
+            return False
+
     @diceSlot(name="getMassProperties")
     def get_mass_properties(self):
         mass_properties = \
@@ -617,6 +638,6 @@ class GeometryImport(
     ==================================
     '''
 
-    def run(self, *args):
-        self.set_progress(-1)
+    @diceTask('run')
+    def dummy_run(self):
         return True
