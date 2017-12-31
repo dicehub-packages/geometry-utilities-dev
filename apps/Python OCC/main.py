@@ -9,6 +9,7 @@ from OCC import StlTransfer, StlMesh
 from OCC.BRepMesh import BRepMesh_IncrementalMesh
 from OCC.Visualization import Tesselator
 
+
 class PythonOCC(Application):
 
     def __init__(self, **kwargs):
@@ -75,7 +76,6 @@ class PythonOCC(Application):
         else:
             self.__outputs = []
         self.output_type_changed()
-
 
     def run_script(self, is_running=False):
         env = {}

@@ -1,3 +1,4 @@
 numpy-stl
 vtk
 dice_vtk
+pythonocc-core
